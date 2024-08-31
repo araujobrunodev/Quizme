@@ -1,0 +1,27 @@
+.middle_button {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.filters_button {
+    flex-shrink: 1;
+    width: 7rem;
+    height: 2.4rem;
+    background-color: #4184C6;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-size: 24px;
+    transition: 0.2s;
+}
+
+.filters_button:active {
+    filter: brightness(150%);
+}
+
+.list_of_quizes {
+    margin: 0px 3rem;
+    flex: 1;
+}

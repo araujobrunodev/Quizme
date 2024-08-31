@@ -13,4 +13,6 @@ body {
 
 .main_context {
     flex: 1;
+    display: flex;
+    flex-flow: column wrap;
 }
