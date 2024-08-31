@@ -11,20 +11,15 @@ interface TopbarProps {
 const Topbar:FC<TopbarProps> = function (props) {
     const sources = ["accountIcon.svg","leavePage.svg"]
     const [source, setSource] = useState("")
-
-    useEffect(() => {
-        const {accountOrBacktoHome, logo, searchBar} = props
-        
-        if (!accountOrBacktoHome && !logo && !searchBar) {
-            console.log("remover tudo menos o leavePage, e jogar pro canto esquerdo")
-        }
-    },[props.accountOrBacktoHome, props.logo, props.searchBar])
+    const [page, setPage] = useState("")
 
     useEffect(() => {
         if (props.accountOrBacktoHome) {
             setSource(sources[0])
+            setPage("account")
         } else {
             setSource(sources[1])
+            setPage("/")
         } 
     },[props.accountOrBacktoHome])
 
@@ -34,13 +29,11 @@ const Topbar:FC<TopbarProps> = function (props) {
         
             <input className="search_bar" type="search" hidden={!props.searchBar} placeholder="Search some quiz"/>
 
-            {/* link to send client to other page */}
-
-            {/* <Link to={"/"}> */}
+            <Link className="icons_button" to={page}>
                 <img src={source}
                 className="icons"
                 alt="" />
-            {/* </Link> */}
+            </Link>
         </div>
     )
 }

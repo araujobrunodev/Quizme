@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "./pages";
 
 const router = createBrowserRouter([{
     path: "/",
@@ -6,15 +7,15 @@ const router = createBrowserRouter([{
     children: [
         { 
             path: "/",
-            element: <h1>main page</h1>
+            element: <MainLayout accountOrBackToHome={true} logo={true} searchBar={true} childrens={<p></p>}/>
         }, 
         { 
             path: "/account",
-            element: <h1>account page</h1>
+            element: <MainLayout accountOrBackToHome={false} logo={true} searchBar={false} childrens={<p></p>}/>
         },
         { 
             path: "/makeaquiz",
-            element: <h1>make a quiz page</h1>
+            element: <MainLayout accountOrBackToHome={false} logo={false} searchBar={false} childrens={<p></p>}/>
         }
     ]
 }])

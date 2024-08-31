@@ -1,0 +1,16 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #3D77B0;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.main_context {
+    flex: 1;
+}
