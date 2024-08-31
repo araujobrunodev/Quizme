@@ -10,14 +10,7 @@ const MainPage = function () {
             </div>
 
             <div className="list_of_quizes">
-                {/* { */}
-                    <div>egsig</div>
-                    <div>egsig</div>
-                    <div>egsig</div>
-                    <div>egsig</div>
-                    <div>egsig</div>
-                    <div>egsig</div>
-                {/* } */}
+                {}
             </div>
         </>
     )
