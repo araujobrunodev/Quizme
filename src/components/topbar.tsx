@@ -1,4 +1,6 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../styles/topbar.css"
 
 interface TopbarProps {
     logo: boolean,
@@ -8,6 +10,7 @@ interface TopbarProps {
 
 const Topbar:FC<TopbarProps> = function (props) {
     const sources = ["accountIcon.svg","leavePage.svg"]
+    const [source, setSource] = useState("")
 
     useEffect(() => {
         const {accountOrBacktoHome, logo, searchBar} = props
@@ -17,17 +20,27 @@ const Topbar:FC<TopbarProps> = function (props) {
         }
     },[props.accountOrBacktoHome, props.logo, props.searchBar])
 
+    useEffect(() => {
+        if (props.accountOrBacktoHome) {
+            setSource(sources[0])
+        } else {
+            setSource(sources[1])
+        } 
+    },[props.accountOrBacktoHome])
+
     return (
         <div className="topbar">
             <p className="title_of_topbar" hidden={!props.logo}>Quizme</p>
         
-            <input type="search" hidden={!props.searchBar} placeholder="Search some quiz"/>
-        
-            <img src={
-                props.accountOrBacktoHome ?
-                sources[0] :
-                sources[1]
-            } alt="" />
+            <input className="search_bar" type="search" hidden={!props.searchBar} placeholder="Search some quiz"/>
+
+            {/* link to send client to other page */}
+
+            {/* <Link to={"/"}> */}
+                <img src={source}
+                className="icons"
+                alt="" />
+            {/* </Link> */}
         </div>
     )
 }

@@ -4,9 +4,9 @@ function App() {
   return (
     <>
       <Topbar 
-      accountOrBacktoHome={false}
-      logo={false}
-      searchBar={false}
+      accountOrBacktoHome={true}
+      logo={true}
+      searchBar={true}
       />
     </>
   )
