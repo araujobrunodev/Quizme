@@ -1,14 +1,9 @@
-import Topbar from "./components/topbar"
+import { RouterProvider } from "react-router-dom"
+import router from "./router"
 
 function App() {
   return (
-    <>
-      <Topbar 
-      accountOrBacktoHome={true}
-      logo={true}
-      searchBar={true}
-      />
-    </>
+    <RouterProvider router={router}/>
   )
 }
 
