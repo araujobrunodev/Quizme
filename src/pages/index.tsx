@@ -2,6 +2,7 @@ import Topbar from "../components/topbar"
 import { FC, ReactElement } from "react"
 import Login from "../components/login"
 import "../styles/index.css"
+import { useLoginPermission } from "../contexts/loginPermission"
 
 interface MainLayoutProps {
     childrens: ReactElement | ReactElement[],
@@ -16,6 +17,8 @@ const MainLayout:FC<MainLayoutProps> = ({
     logo,
     searchBar
 }) => {
+    const loginPermission = useLoginPermission()
+
     return (<div className="page">
         <Topbar accountOrBacktoHome={accountOrBackToHome} logo={logo} searchBar={searchBar}/>
         
@@ -23,7 +26,7 @@ const MainLayout:FC<MainLayoutProps> = ({
             {childrens}
         </div>
 
-        <Login />
+        <Login hidden={loginPermission.state}/>
     </div>)
 }
 
