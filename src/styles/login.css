@@ -1,0 +1,15 @@
+.login {
+    position: absolute;
+    top: 43%;
+    left: 5%;
+    width: 23rem;
+    height: 10rem;
+    background-color: #2e5b88;
+}
+
+.title_p {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-family: "Sansita", system-ui;
+}

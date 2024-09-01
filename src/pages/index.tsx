@@ -1,5 +1,6 @@
 import Topbar from "../components/topbar"
 import { FC, ReactElement } from "react"
+import Login from "../components/login"
 import "../styles/index.css"
 
 interface MainLayoutProps {
@@ -21,6 +22,8 @@ const MainLayout:FC<MainLayoutProps> = ({
         <div className="main_context">
             {childrens}
         </div>
+
+        <Login />
     </div>)
 }
 
