@@ -46,7 +46,7 @@ const Login:FC<LoginProps> = function ({
         <div className="login" hidden={!hidden}>
             <p className="title_p">Entrar</p>
 
-            <GoogleLogin size="large" onSuccess={(w) => getAccountData()} onError={() => console.log("não rolou")}/>
+            <GoogleLogin theme="filled_blue" width={"100%"} text="continue_with" shape="rectangular" onSuccess={(w) => getAccountData()} onError={() => console.log("não rolou")}/>
         </div>
     )
 }
