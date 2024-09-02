@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "./pages/mainPage";
 import MainLayout from "./pages";
+import MakeQuiz from "./pages/makeQuiz";
 
 const router = createBrowserRouter([{
     path: "/",
@@ -16,7 +17,7 @@ const router = createBrowserRouter([{
         },
         { 
             path: "/makeaquiz",
-            element: <MainLayout accountOrBackToHome={false} logo={false} searchBar={false} childrens={<p></p>}/>
+            element: <MainLayout accountOrBackToHome={false} logo={false} searchBar={false} childrens={<MakeQuiz />}/>
         }
     ]
 }])
