@@ -17,7 +17,7 @@ const router = createBrowserRouter([{
         },
         { 
             path: "/makeaquiz",
-            element: <MainLayout accountOrBackToHome={false} logo={false} searchBar={false} childrens={<MakeQuiz />}/>
+            element: <MainLayout accountOrBackToHome={false} logo={false} searchBar={false} childrens={<MakeQuiz type="makeQuiz"/>}/>
         }
     ]
 }])
