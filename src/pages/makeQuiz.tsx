@@ -12,7 +12,7 @@ const MakeQuiz:FC<MakeQuizProps> = ({
     return (
         <div className="make_quiz">
             <SideMain makerQuiz="" target="" title="" type={type}/>
-            <BlockSide type="makeQuiz" numberOfQuestion={1}/>
+            <BlockSide key={4} type="makeQuiz"/>
         </div>
     )
 }

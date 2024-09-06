@@ -1,0 +1,57 @@
+.block_side {
+    background-color: #30608f;
+    min-height: 20%;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1rem;
+}
+
+.title_of_question {
+    font-family: "Sansita", system-ui;
+    font-size: 21px;
+}
+
+.container_of_options {
+    background-color: #30608f;
+    filter: grayscale(33%);
+    border-radius: 10px;
+}
+
+.input_text {
+    font-family: "Sansita", system-ui;
+    width: 78%;
+    font-size: 17px;
+}
+
+.input_radio {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Container_button_blockSide {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.button_blockSide {
+    background-color: transparent;
+    border-color: transparent;
+    display: flex;
+    width: 3rem;
+    height: 2.8rem;
+}
+
+.button_blockSide_img {
+    flex: 1;
+}
+
+.description {
+    font-family: "Sansita", system-ui;
+    height: 5rem;
+    resize: none;
+    font-size: 18px;
+}

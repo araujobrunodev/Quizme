@@ -1,12 +1,11 @@
 import { FC, useState } from "react"
+import "../styles/blockSide.css"
 
 interface BlockSideProps {
-    numberOfQuestion: number,
     type: "makeQuiz" | "playQuiz"
 }
 
 const BlockSide:FC<BlockSideProps> = ({
-    numberOfQuestion,
     type
 }) => {
     const [options, setOptions] = useState<number[]>([])
@@ -26,7 +25,6 @@ const BlockSide:FC<BlockSideProps> = ({
 
     return (
         <div className="block_side">
-            {`${numberOfQuestion}. `}
             {
                 type == "makeQuiz" ?
                 <input className="title_of_question" placeholder="Escreva aqui o titulo" type="text"/>
@@ -38,12 +36,18 @@ const BlockSide:FC<BlockSideProps> = ({
 
             {
                 type == "makeQuiz" &&
-                <button onClick={() => setOptions([...options, 0])}>
-                    <img src="/add_circle.svg" alt="add circle.svg" />
-                </button>
+                <div className="Container_button_blockSide">
+                    <button className="button_blockSide" onClick={() => setOptions([...options, 0])}>
+                        <img className="button_blockSide_img" src="/add_circle.svg" alt="add circle.svg" />
+                    </button>
+
+                    <button className="button_blockSide" onClick={() => {}}>
+                        <img className="button_blockSide_img" src="/cancel.svg" alt="cancel.svg" />
+                    </button>
+                </div>
             }
 
-            <textarea maxLength={100} readOnly={type == "playQuiz"} className="description" defaultValue={""} placeholder="Descreva a resposta aqui"></textarea>
+            <textarea maxLength={900} readOnly={type == "playQuiz"} className="description" defaultValue={""} placeholder="Descreva a resposta aqui"></textarea>
         </div>
     )
 }
