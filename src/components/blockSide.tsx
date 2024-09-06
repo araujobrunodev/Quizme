@@ -23,6 +23,17 @@ const BlockSide:FC<BlockSideProps> = ({
         })
     }
 
+    const removeOptions = () => {
+        const newOptions:number[] = []
+
+        options.forEach((option,index) => {
+            if (index == options.length - 1) return;
+            newOptions.push(option)
+        })
+
+        setOptions(newOptions)
+    }
+
     return (
         <div className="block_side">
             {
@@ -41,7 +52,7 @@ const BlockSide:FC<BlockSideProps> = ({
                         <img className="button_blockSide_img" src="/add_circle.svg" alt="add circle.svg" />
                     </button>
 
-                    <button className="button_blockSide" onClick={() => {}}>
+                    <button className="button_blockSide" onClick={() => removeOptions()}>
                         <img className="button_blockSide_img" src="/cancel.svg" alt="cancel.svg" />
                     </button>
                 </div>
