@@ -10,9 +10,9 @@ const BlockSide:FC<BlockSideProps> = ({
 }) => {
     const [options, setOptions] = useState<number[]>([])
 
-    const createOptions = () => {
+    const AppearOptions = () => {
         return options.map((option) => {
-            return (<div className="container_of_options">
+            return (<div className="container_of_options" key={(Math.random() * (new Date()).getMilliseconds())}>
                 <input type="radio" name="options" className="input_radio" />
                 {
                     type == "makeQuiz" ?
@@ -21,6 +21,10 @@ const BlockSide:FC<BlockSideProps> = ({
                 }
             </div>)
         })
+    }
+
+    const CreateOptions = () => {
+        setOptions([...options, 0])
     }
 
     const removeOptions = () => {
@@ -43,12 +47,12 @@ const BlockSide:FC<BlockSideProps> = ({
                 <p className="p_title_of_question">{/*value here*/}</p>
             }
 
-            { createOptions() }
+            { AppearOptions() }
 
             {
                 type == "makeQuiz" &&
                 <div className="Container_button_blockSide">
-                    <button className="button_blockSide" onClick={() => setOptions([...options, 0])}>
+                    <button className="button_blockSide" onClick={() => CreateOptions()}>
                         <img className="button_blockSide_img" src="/add_circle.svg" alt="add circle.svg" />
                     </button>
 
