@@ -14,13 +14,17 @@ const MakeQuiz:FC<MakeQuizProps> = ({
     const blockSidesContext = useBlockSides()
     
     return (
-        <div className="make_quiz">
+        <div className="make_quiz" >
             <SideMain makerQuiz="" target="" title="" type={type}/>
+            
+            <div className="Container_of_blockSides">
             {
                 blockSidesContext.blockSides.map((s,index) => {
                     return <BlockSide identification={index} key={index} type="makeQuiz"/>
                 })
             }
+            </div>
+
             <ToolCenter />
         </div>
     )

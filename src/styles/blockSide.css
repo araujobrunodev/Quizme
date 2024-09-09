@@ -45,6 +45,11 @@
     height: 2.8rem;
 }
 
+.Container_of_blockSides {
+    height: 1rem;
+    scroll-behavior: smooth;
+}
+
 .button_blockSide_img {
     flex: 1;
 }
