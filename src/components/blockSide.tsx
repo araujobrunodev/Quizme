@@ -1,50 +1,114 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import "../styles/blockSide.css"
+import { useBlockSides } from "../contexts/blockSideContext"
 
 interface BlockSideProps {
-    type: "makeQuiz" | "playQuiz"
+    type: "makeQuiz" | "playQuiz",
+    identification: number
+}
+
+interface BlockSideProperty {
+    property: "title" | "options" | "description",
+    state: "update" | "create" | "remove",
+    value?: string | boolean,
+    id?: string
+    typeOption?: "text" | "isRight"
 }
 
 const BlockSide:FC<BlockSideProps> = ({
-    type
+    type,
+    identification
 }) => {
-    const [options, setOptions] = useState<number[]>([])
+    let info = useBlockSides()
 
     const AppearOptions = () => {
-        return options.map((option) => {
-            return (<div className="container_of_options" key={(Math.random() * (new Date()).getMilliseconds())}>
-                <input type="radio" name="options" className="input_radio" />
+        return info.blockSides[identification].options.map((option) => {
+            return (<div className="container_of_options" key={option.id}>
+                <input checked={option.isRight} onChange={(event) => ChangeProperty({property: "options", state: "update", value: event.target.checked, id: option.id, typeOption: "isRight"})} type="radio" name={`options_${option.id}`} className="input_radio" />
                 {
                     type == "makeQuiz" ?
-                    <input type="text" className="input_text" /> :
-                    <p className="p_text">{/*value here*/}</p>
+                    <input onChange={(event) => ChangeProperty({property: "options", state: "update", value: event.target.value, id: option.id, typeOption: "text"})}  type="text" className="input_text" /> :
+                    <p className="p_text">{option.text}</p>
                 }
             </div>)
         })
     }
 
-    const CreateOptions = () => {
-        setOptions([...options, 0])
-    }
+    const ChangeProperty = ({property, state, value, id, typeOption}:BlockSideProperty) => {
+        const blockSides = info.blockSides.map((blockSide,index) => {
+            if (index !== identification) return blockSide
 
-    const removeOptions = () => {
-        const newOptions:number[] = []
+            if (property == "options") {
+                switch (state) {
+                    case "create":
+                        return {
+                            ...blockSide,
+                            options: [...blockSide.options, {
+                                isRight: false,
+                                text: "",
+                                id: Math.random().toString()
+                            }]
+                        }
+                        break;
+                    case "update":
+                        return {
+                            ...blockSide,
+                            options: blockSide.options.map((option) => {
+                                if (option.id !== id) return {...option, isRight: false};
+                                
+                                if (typeOption === "text") {
+                                    return {
+                                        ...option,
+                                        text: value as string
+                                    }
+                                } else if (typeOption === "isRight") {
+                                    return {
+                                        ...option,
+                                        isRight: value as boolean
+                                    }
+                                }  else return option
+                            })
+                        }
+                        break;
+                    
+                    case "remove":
+                        return {
+                            ...blockSide,
+                            options: blockSide.options.slice(0,-1)
+                        }
+                        break;
+                }
+            } 
+            
+            if (property == "description" || property == "title") {
+                if (state !== "update") return blockSide;
+                
+                return {
+                    ...blockSide,
+                    title: value as string
+                } 
+            } else if (property == "description") {
+                if (state !== "update") return blockSide;
+                
+                return {
+                    ...blockSide,
+                    description: value as string
+                }   
+            }
 
-        options.forEach((option,index) => {
-            if (index == options.length - 1) return;
-            newOptions.push(option)
+            return blockSide
         })
 
-        setOptions(newOptions)
+        info.setBlockSides(blockSides)
     }
 
     return (
         <div className="block_side">
             {
                 type == "makeQuiz" ?
-                <input className="title_of_question" placeholder="Escreva aqui o titulo" type="text"/>
+                <input onChange={(event) => ChangeProperty({property: "title", state: "update", value: event.target.value})} className="title_of_question" placeholder="Escreva aqui o titulo" type="text"/>
                 :
-                <p className="p_title_of_question">{/*value here*/}</p>
+                <p className="p_title_of_question">{info.blockSides[identification].title}</p>
             }
 
             { AppearOptions() }
@@ -52,17 +116,17 @@ const BlockSide:FC<BlockSideProps> = ({
             {
                 type == "makeQuiz" &&
                 <div className="Container_button_blockSide">
-                    <button className="button_blockSide" onClick={() => CreateOptions()}>
+                    <button className="button_blockSide" onClick={() => ChangeProperty({property: "options", state: "create"})}>
                         <img className="button_blockSide_img" src="/add_circle.svg" alt="add circle.svg" />
                     </button>
 
-                    <button className="button_blockSide" onClick={() => removeOptions()}>
+                    <button className="button_blockSide" onClick={() => ChangeProperty({property: "options", state: "remove"})}>
                         <img className="button_blockSide_img" src="/cancel.svg" alt="cancel.svg" />
                     </button>
                 </div>
             }
 
-            <textarea maxLength={900} readOnly={type == "playQuiz"} className="description" defaultValue={""} placeholder="Descreva a resposta aqui"></textarea>
+            <textarea maxLength={900} readOnly={type == "playQuiz"} onChange={(event) => ChangeProperty({property: "description", state: "update", value: event.target.value})} placeholder="Descreva a resposta aqui"></textarea>
         </div>
     )
 }

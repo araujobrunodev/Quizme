@@ -1,10 +1,19 @@
+import { blockSideType, useBlockSides } from "../contexts/blockSideContext"
 import "../styles/toolCenter.css"
 
 const ToolCenter = () => {
     const buttonNames = ["Criar", "Finalizar","Remover"]
+    const blockSides = useBlockSides()
 
     const MakeABlockSide = () => {
-        console.log("make a blockSide")
+        blockSides.setBlockSides([
+            ...blockSides.blockSides,
+            {
+                title: "",
+                options: [],
+                description: ""
+            }
+        ])
     }
 
     const FinishProject = () => {
@@ -12,7 +21,9 @@ const ToolCenter = () => {
     }
 
     const RemoveABlockSide = () => {
-        console.log("remove a blockSide")
+        const newBlockSides:blockSideType[] = blockSides.blockSides.slice(0,-1)
+
+        blockSides.setBlockSides(newBlockSides)
     }
 
     const eventByEachButton = [

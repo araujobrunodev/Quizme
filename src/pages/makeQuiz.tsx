@@ -2,6 +2,7 @@ import { FC } from "react"
 import SideMain from "../components/sideMain"
 import BlockSide from "../components/blockSide"
 import ToolCenter from "../components/toolCenter"
+import { useBlockSides } from "../contexts/blockSideContext"
 
 interface MakeQuizProps {
     type: "makeQuiz" | "playQuiz"
@@ -10,10 +11,16 @@ interface MakeQuizProps {
 const MakeQuiz:FC<MakeQuizProps> = ({
     type
 }) => {
+    const blockSidesContext = useBlockSides()
+    
     return (
         <div className="make_quiz">
             <SideMain makerQuiz="" target="" title="" type={type}/>
-            <BlockSide key={4} type="makeQuiz"/>
+            {
+                blockSidesContext.blockSides.map((s,index) => {
+                    return <BlockSide identification={index} key={index} type="makeQuiz"/>
+                })
+            }
             <ToolCenter />
         </div>
     )
