@@ -1,7 +1,14 @@
+import { FC } from "react"
 import { blockSideType, useBlockSides } from "../contexts/blockSideContext"
 import "../styles/toolCenter.css"
 
-const ToolCenter = () => {
+interface ToolCenterProps {
+    type: "makeQuiz" | "playQuiz"
+}
+
+const ToolCenter:FC<ToolCenterProps> = ({
+    type
+}) => {
     const buttonNames = ["Criar", "Finalizar","Remover"]
     const blockSides = useBlockSides()
 
@@ -40,6 +47,10 @@ const ToolCenter = () => {
                         <button 
                         onClick={eventByEachButton[index]} 
                         key={index} 
+                        hidden={
+                            name !== "Finalizar" &&
+                            type === "playQuiz"
+                        }
                         className={"button_toolCenter "+name}>
                             {name}
                         </button>

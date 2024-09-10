@@ -25,7 +25,7 @@ const MakeQuiz:FC<MakeQuizProps> = ({
             }
             </div>
 
-            <ToolCenter />
+            <ToolCenter type="makeQuiz" />
         </div>
     )
 }
