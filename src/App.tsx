@@ -1,4 +1,5 @@
 import { CreateLoginPermission } from "./contexts/loginPermission"
+import { CreateBlockSides, blockSideType } from "./contexts/blockSideContext"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { RouterProvider } from "react-router-dom"
 import { CreateUserData } from "./contexts/user"
@@ -10,6 +11,7 @@ function App() {
   let [email, setEmail] = useState("")
   let [photo, setPhoto] = useState("")
   let [loginPermission, setLoginPermission] = useState(false)
+  let [blockSides, setBlockSides] = useState<blockSideType[]>([])
 
   return (
     <CreateUserData.Provider value={{
@@ -27,9 +29,16 @@ function App() {
         setState: setLoginPermission
       }} 
       children={
-        <GoogleOAuthProvider clientId="656529349981-n4276c4qm3fqquubrrju327n50h4i2vv.apps.googleusercontent.com">
-          <RouterProvider router={router}/>
-        </GoogleOAuthProvider>
+        <CreateBlockSides.Provider 
+        value={{
+          blockSides: blockSides,
+          setBlockSides: setBlockSides
+        }} 
+        children={
+          <GoogleOAuthProvider clientId="656529349981-n4276c4qm3fqquubrrju327n50h4i2vv.apps.googleusercontent.com">
+            <RouterProvider router={router}/>
+          </GoogleOAuthProvider>
+        }/>
       }/>
     }/>
   )

@@ -1,0 +1,33 @@
+.side_main {
+    display: flex;
+    flex-flow: column wrap;
+    border-radius: 10px;
+    background-color: #30608f;
+    height: 10rem;
+    margin: 2rem 2rem;
+}
+
+.title_side_main {
+    color: white;
+    font-family: "Sansita", system-ui;
+    text-align: center;
+    font-size: 30px;
+    margin: 0px;
+    flex: 1;
+}
+
+.label_side_main, .text_side_main {
+    flex: 1;
+    color: white;
+    font-family: "Sansita", system-ui;
+    background-color: #30608f;
+    filter: grayscale(33%);
+    margin: 5px 5px;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    text-indent: 10px;
+}
+
+.input_side_main {
+    font-family: "Sansita", system-ui;
+}
