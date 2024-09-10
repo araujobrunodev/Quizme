@@ -27,7 +27,7 @@ const BlockSide:FC<BlockSideProps> = ({
                 <input checked={option.isRight} onChange={(event) => ChangeProperty({property: "options", state: "update", value: event.target.checked, id: option.id, typeOption: "isRight"})} type="radio" name={`options_${option.id}`} className="input_radio" />
                 {
                     type == "makeQuiz" ?
-                    <input onChange={(event) => ChangeProperty({property: "options", state: "update", value: event.target.value, id: option.id, typeOption: "text"})}  type="text" className="input_text" /> :
+                    <input defaultValue={option.text} onChange={(event) => ChangeProperty({property: "options", state: "update", value: event.target.value, id: option.id, typeOption: "text"})}  type="text" className="input_text" /> :
                     <p className="p_text">{option.text}</p>
                 }
             </div>)
@@ -106,9 +106,9 @@ const BlockSide:FC<BlockSideProps> = ({
         <div className="block_side">
             {
                 type == "makeQuiz" ?
-                <input onChange={(event) => ChangeProperty({property: "title", state: "update", value: event.target.value})} className="title_of_question" placeholder="Escreva aqui o titulo" type="text"/>
+                <input defaultValue={info.blockSides[identification].title} onChange={(event) => ChangeProperty({property: "title", state: "update", value: event.target.value})} className="title_of_question" placeholder="Escreva aqui o titulo" type="text"/>
                 :
-                <p className="p_title_of_question">{info.blockSides[identification].title}</p>
+                <p className="p_title_of_question">{`${identification + 1}. ${info.blockSides[identification].title}`}</p>
             }
 
             { AppearOptions() }
@@ -126,7 +126,7 @@ const BlockSide:FC<BlockSideProps> = ({
                 </div>
             }
 
-            <textarea maxLength={900} readOnly={type == "playQuiz"} onChange={(event) => ChangeProperty({property: "description", state: "update", value: event.target.value})} placeholder="Descreva a resposta aqui"></textarea>
+            <textarea defaultValue={info.blockSides[identification].description} maxLength={900} hidden={false} readOnly={type == "playQuiz"} onChange={(event) => ChangeProperty({property: "description", state: "update", value: event.target.value})} placeholder="Descreva a resposta aqui"></textarea>
         </div>
     )
 }

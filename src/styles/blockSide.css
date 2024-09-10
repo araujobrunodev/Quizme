@@ -14,16 +14,32 @@
     font-size: 21px;
 }
 
+.p_title_of_question {
+    font-family: "Sansita", system-ui;
+    color: white;
+    font-size: 23px;
+}
+
 .container_of_options {
     background-color: #30608f;
     filter: grayscale(33%);
     border-radius: 10px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .input_text {
     font-family: "Sansita", system-ui;
     width: 78%;
     font-size: 17px;
+}
+
+.p_text {
+    color: white;
+    margin: 0px;
+    font-size: 20px;
+    text-indent: 8px;
+    font-family: "Sansita", system-ui;
 }
 
 .input_radio {
